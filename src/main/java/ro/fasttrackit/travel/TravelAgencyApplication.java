@@ -35,8 +35,8 @@ public class TravelAgencyApplication {
                             new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/106/106214056.jpg"))),
                     new Vacation("Vega Hotel", 5, "Mamaia", 8.9, 9000, 7, List.of(
                             new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/188/18857678.jpg"),
-                            new ImageUrl(" https://q-cf.bstatic.com/images/hotel/max1280x900/155/155914768.jpg"),
-                            new ImageUrl(" https://r-cf.bstatic.com/images/hotel/max1280x900/188/18856351.jpg"))),
+                            new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/155/155914768.jpg"),
+                            new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/188/18856351.jpg"))),
                     new Vacation("Hotel Inter", 5, "Venus", 8.2, 4800, 7, List.of(
                             new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/197/19784961.jpg"),
                             new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/110/110622131.jpg"),
