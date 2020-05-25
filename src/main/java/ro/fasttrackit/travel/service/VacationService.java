@@ -19,22 +19,22 @@ public class VacationService {
         return vacationRepository.findAll();
     }
 
-    public Vacation getVacationById(Integer id) {
-        return getOrThrow(id);
+    public Vacation getVacationById(Integer vacationId) {
+        return getOrThrow(vacationId);
     }
 
     public Vacation addVacation(Vacation vacation) {
         return vacationRepository.save(vacation);
     }
 
-    public Vacation deleteVacation(int id) {
-        Vacation vacationToDelete = getOrThrow(id);
-        vacationRepository.deleteById(id);
+    public Vacation deleteVacation(int vacationId) {
+        Vacation vacationToDelete = getOrThrow(vacationId);
+        vacationRepository.deleteById(vacationId);
         return vacationToDelete;
     }
 
-    public Vacation updateVacation(int id, Vacation vacation) {
-        Vacation dbVacation = getOrThrow(id);
+    public Vacation updateVacation(int vacationId, Vacation vacation) {
+        Vacation dbVacation = getOrThrow(vacationId);
         dbVacation.setName(vacation.getName());
         dbVacation.setStars(vacation.getStars());
         dbVacation.setLocation(vacation.getLocation());
@@ -44,8 +44,8 @@ public class VacationService {
         return vacationRepository.save(dbVacation);
     }
 
-    private Vacation getOrThrow(int id) {
-        return vacationRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Could not find vacation with id " + id));
+    private Vacation getOrThrow(int vacationId) {
+        return vacationRepository.findById(vacationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Could not find vacation with id " + vacationId));
     }
 }

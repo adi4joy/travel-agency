@@ -11,7 +11,7 @@ import static java.util.Collections.emptyList;
 public class Vacation {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Integer vacationId;
     private String name;
     private int stars;
     private String location;
@@ -38,12 +38,12 @@ public class Vacation {
         this.imageUrl = new ArrayList<>(imagesUrl == null ? emptyList() : imagesUrl);
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getVacationId() {
+        return vacationId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setVacationId(Integer vacationId) {
+        this.vacationId = vacationId;
     }
 
     public String getName() {
@@ -60,6 +60,14 @@ public class Vacation {
 
     public void setStars(int stars) {
         this.stars = stars;
+    }
+
+    public void showStars(int stars) {
+        this.stars = stars;
+        if (stars > 0) {
+            System.out.print("*" + " ");
+            showStars(stars - 1);
+        }
     }
 
     public String getLocation() {
@@ -103,20 +111,20 @@ public class Vacation {
                 rating == vacation.rating &&
                 price == vacation.price &&
                 duration == vacation.duration &&
-                Objects.equals(id, vacation.id) &&
+                Objects.equals(vacationId, vacation.vacationId) &&
                 Objects.equals(name, vacation.name) &&
                 Objects.equals(location, vacation.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, stars, location, rating, price, duration);
+        return Objects.hash(vacationId, name, stars, location, rating, price, duration);
     }
 
     @Override
     public String toString() {
         return "Vacation{" +
-                "id=" + id +
+                "vacationId=" + vacationId +
                 ", name='" + name + '\'' +
                 ", stars=" + stars +
                 ", location='" + location + '\'' +

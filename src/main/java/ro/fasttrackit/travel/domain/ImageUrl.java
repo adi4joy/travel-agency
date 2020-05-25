@@ -9,7 +9,7 @@ import java.util.Objects;
 public class ImageUrl {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Integer imageUrlId;
     private String url;
 
     public ImageUrl() {
@@ -19,12 +19,12 @@ public class ImageUrl {
         this.url = url;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getImageUrlId() {
+        return imageUrlId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setImageUrlId(Integer imageUrlId) {
+        this.imageUrlId = imageUrlId;
     }
 
     public String getUrl() {
@@ -40,19 +40,19 @@ public class ImageUrl {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ImageUrl imageUrl = (ImageUrl) o;
-        return Objects.equals(id, imageUrl.id) &&
+        return Objects.equals(imageUrlId, imageUrl.imageUrlId) &&
                 Objects.equals(url, imageUrl.url);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, url);
+        return Objects.hash(imageUrlId, url);
     }
 
     @Override
     public String toString() {
         return "ImageUrl{" +
-                "id=" + id +
+                "id=" + imageUrlId +
                 ", url='" + url + '\'' +
                 '}';
     }
