@@ -41,6 +41,7 @@ public class VacationService {
         dbVacation.setRating(vacation.getRating());
         dbVacation.setPrice(vacation.getPrice());
         dbVacation.setDuration(vacation.getDuration());
+        dbVacation.setDescription(vacation.getDescription());
         return vacationRepository.save(dbVacation);
     }
 

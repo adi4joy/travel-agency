@@ -36,13 +36,14 @@ public class VacationUIController {
         return "vacations";
     }
 
+    //Details Page
     //get vacation by id
     @GetMapping("vacations/{vacationId}")
     public String vacationsPageWithDetails(@PathVariable Integer vacationId, Model pageModel) {
         pageModel.addAttribute("showDetails", true);
         pageModel.addAttribute("selectedVacation", vacationService.getVacationById(vacationId));
 //        pageModel.addAttribute("selectedImageUrl", imageUrlService.getImageUrlById(imageUrlId));
-        return vacationsPage(pageModel);
+        return "details";
     }
 
 }

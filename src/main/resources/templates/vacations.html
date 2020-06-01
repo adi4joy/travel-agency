@@ -8,12 +8,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
-    <!--    <style>-->
-    <!--body {-->
-    <!--  background-image: url('https://wallpaperaccess.com/full/211842.jpg');-->
-    <!--  background-repeat: no-repeat;-->
-    <!--}-->
-    <!--</style>-->
+    <script>
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#vacationTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+    </script>
 </head>
 <body>
 <div class="container">
@@ -30,7 +35,10 @@
     </nav>
 
     <div class="container-fluid"><br>
-        <div class="d-flex justify-content-end mt-2">
+        <div class="d-flex justify-content-between mt-2">
+            <div style="width:30%">
+                <input class="form-control" id="search" placeholder="Search..." type="text">
+            </div>
             <button class="btn btn-dark">Add</button>
         </div>
         <table class="table table-hover mt-3">
@@ -43,7 +51,7 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="vacationTable">
             <tr data-th-each="vacation : ${vacations}">
                 <td>
                     <a class="nav-link text-dark" data-th-href="${vacation.vacationId}"
@@ -52,84 +60,12 @@
                 <td data-th-text="${vacation.stars}"></td>
                 <td data-th-text="${vacation.location}"></td>
                 <td data-th-text="${vacation.rating}"></td>
-                <td><i class="fas fa-trash-alt"></i></td>
+                <td><i class="fas fa-edit mr-2"></i>
+                    <i class="fas fa-trash-alt ml-2"></i></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="container" data-th-if="${showDetails}"><br>
-        <div class="card">
-            <div class="card-header bg-info text-light" data-th-text="${selectedVacation.name}"></div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <p>Location: <span data-th-text="${selectedVacation.location}"></span></p>
-                        <p>Stars: <span data-th-text="${selectedVacation.stars}"></span></p>
-                        <p>Rating: <span data-th-text="${selectedVacation.rating}"></span></p>
-                        <p>Duration: <span data-th-text="${selectedVacation.duration}"></span></p>
-                        <p>Price: <span data-th-text="${selectedVacation.price}"></span></p>
-                        <!--                        <p>Description:<br> <span data-th-text="${selectedVacation.description}"></span></p>-->
-                        <p>Description:<br> <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar lacinia venenatis. Vestibulum tristique congue velit, vitae tincidunt elit tempor sed. Quisque laoreet, eros sed hendrerit maximus, sapien mi consectetur sapien, ut tincidunt leo risus et erat. Fusce ornare iaculis imperdiet. Sed in accumsan quam, eu dapibus ex. In facilisis, turpis in placerat accumsan, leo mi euismod odio, non blandit elit urna nec justo.</span>
-                        </p>
-                    </div>
-                    <!--                    <table class="table table-sm border table-striped mt-3">-->
-                    <!--                    <thead>-->
-                    <!--                    <tr>-->
-                    <!--                        <th>Cinema</th>-->
-                    <!--                        <th>Start Hour</th>-->
-                    <!--                        <th>Price</th>-->
-                    <!--                        <th></th>-->
-                    <!--                    </tr>-->
-                    <!--                    </thead>-->
-                    <!--                    <tbody>-->
-                    <!--                    <tr>-->
-                    <!--                        <td>Cinema City</td>-->
-                    <!--                        <td>11:00</td>-->
-                    <!--                        <td>15</td>-->
-                    <!--                        <td><i class="fas fa-user-plus"></i></td>-->
-                    <!--                    </tr>-->
-                    <!--                    </tbody>-->
-                    <!--                </table>-->
-                    <div class="col-sm-8">
-                        <div class="carousel slide" data-ride="carousel" id="demo">
-                            <!-- Indicators -->
-                            <ul class="carousel-indicators">
-                                <li class="active" data-slide-to="0" data-target="#demo"></li>
-                                <li data-slide-to="1" data-target="#demo"></li>
-                                <li data-slide-to="2" data-target="#demo"></li>
-                            </ul>
-                            <!-- The slideshow -->
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="img-fluid"
-                                         src="https://r-cf.bstatic.com/images/hotel/max1280x900/222/222833986.jpg">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="img-fluid"
-                                         src="https://q-cf.bstatic.com/images/hotel/max1280x900/106/106854072.jpg">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="img-fluid"
-                                         src="https://q-cf.bstatic.com/images/hotel/max1280x900/104/104687960.jpg">
-                                </div>
-                            </div>
-
-                            <!--                &lt;!&ndash; Left and right controls &ndash;&gt;-->
-                            <!--                <a class="carousel-control-prev" data-th-href="${selectedVacation.imageUrl}" data-slide="prev">-->
-                            <!--                    <span class="carousel-control-prev-icon"></span>-->
-                            <!--                </a>-->
-                            <!--                <a class="carousel-control-next" data-th-href="${selectedVacation.imageUrl}" data-slide="next">-->
-                            <!--                    <span class="carousel-control-next-icon"></span>-->
-                            <!--                </a>-->
-
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-secondary">Book Now</button>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 </body>
 </html>

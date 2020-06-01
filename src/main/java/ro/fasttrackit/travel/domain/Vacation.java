@@ -18,23 +18,26 @@ public class Vacation {
     private double rating;
     private int price;
     private int duration;
+    @Column(length = 1000)
+    private String description;
     @OneToMany(cascade = CascadeType.ALL)
     private List<ImageUrl> imageUrl;
 
     public Vacation() {
     }
 
-    public Vacation(String name, int stars, String location, double rating, int price, int duration) {
-        this(name, stars, location, rating, price, duration, List.of());
+    public Vacation(String name, int stars, String location, double rating, int price, int duration, String description) {
+        this(name, stars, location, rating, price, duration, description, List.of());
     }
 
-    public Vacation(String name, int stars, String location, double rating, int price, int duration, List<ImageUrl> imagesUrl) {
+    public Vacation(String name, int stars, String location, double rating, int price, int duration, String description, List<ImageUrl> imagesUrl) {
         this.name = name;
         this.stars = stars;
         this.location = location;
         this.rating = rating;
         this.price = price;
         this.duration = duration;
+        this.description = description;
         this.imageUrl = new ArrayList<>(imagesUrl == null ? emptyList() : imagesUrl);
     }
 
@@ -102,23 +105,41 @@ public class Vacation {
         this.duration = duration;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<ImageUrl> getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(List<ImageUrl> imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vacation vacation = (Vacation) o;
         return stars == vacation.stars &&
-                rating == vacation.rating &&
+                Double.compare(vacation.rating, rating) == 0 &&
                 price == vacation.price &&
                 duration == vacation.duration &&
                 Objects.equals(vacationId, vacation.vacationId) &&
                 Objects.equals(name, vacation.name) &&
-                Objects.equals(location, vacation.location);
+                Objects.equals(location, vacation.location) &&
+                Objects.equals(description, vacation.description) &&
+                Objects.equals(imageUrl, vacation.imageUrl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(vacationId, name, stars, location, rating, price, duration);
+        return Objects.hash(vacationId, name, stars, location, rating, price, duration, description, imageUrl);
     }
 
     @Override
@@ -131,14 +152,8 @@ public class Vacation {
                 ", rating=" + rating +
                 ", price=" + price +
                 ", duration=" + duration +
+                ", description='" + description + '\'' +
+                ", imageUrl=" + imageUrl +
                 '}';
-    }
-
-    public List<ImageUrl> getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(List<ImageUrl> imageUrl) {
-        this.imageUrl = imageUrl;
     }
 }
