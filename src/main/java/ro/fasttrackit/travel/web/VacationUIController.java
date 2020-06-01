@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import ro.fasttrackit.travel.domain.Vacation;
 import ro.fasttrackit.travel.service.ImageUrlService;
 import ro.fasttrackit.travel.service.VacationService;
 
@@ -41,7 +42,8 @@ public class VacationUIController {
     @GetMapping("vacations/{vacationId}")
     public String vacationsPageWithDetails(@PathVariable Integer vacationId, Model pageModel) {
         pageModel.addAttribute("showDetails", true);
-        pageModel.addAttribute("selectedVacation", vacationService.getVacationById(vacationId));
+        Vacation vacationById = vacationService.getVacationById(vacationId);
+        pageModel.addAttribute("selectedVacation", vacationById);
 //        pageModel.addAttribute("selectedImageUrl", imageUrlService.getImageUrlById(imageUrlId));
         return "details";
     }
