@@ -44,7 +44,6 @@ public class VacationUIController {
         pageModel.addAttribute("showDetails", true);
         Vacation vacationById = vacationService.getVacationById(vacationId);
         pageModel.addAttribute("selectedVacation", vacationById);
-//        pageModel.addAttribute("selectedImageUrl", imageUrlService.getImageUrlById(imageUrlId));
         return "details";
     }
 

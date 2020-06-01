@@ -13,18 +13,6 @@ public class VacationController {
         this.vacationService = vacationService;
     }
 
-//    //get all vacations
-//    @GetMapping
-//    public List<Vacation> getAll() {
-//        return vacationService.getAll();
-//    }
-//
-//    //get vacation by id
-//    @GetMapping("{id}")
-//    public Vacation getVacationById(@PathVariable int id) {
-//        return vacationService.getVacationById(id);
-//    }
-
     //add a vacation
     @PostMapping
     public Vacation addVacation(@RequestBody Vacation vacation) {

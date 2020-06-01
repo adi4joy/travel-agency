@@ -41,18 +41,17 @@ public class TravelAgencyApplication {
                         new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/110/110622131.jpg"),
                         new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/695/69569648.jpg"))),
                 new Vacation("Hotel Golden Palace", 4, "Mamaia", 9.1, 4800, 7, "", List.of(
-//                        new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/285/28580968.jpg"),
-//                        new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/286/28628095.jpg"),
+                        new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/285/28580968.jpg"),
+                        new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/286/28628095.jpg"),
                         new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/977/97723021.jpg"))),
                 new Vacation("Almar Luxury", 4, "Mamaia", 9.1, 5100, 7, "", List.of(
                         new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/105/105877887.jpg"),
                         new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/105/105877818.jpg"),
-                        new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/105/105877818.jpg"),
                         new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/105/105588185.jpg"))),
                 new Vacation("Hotel Opera Mamaia", 4, "Mamaia", 9.1, 9850, 7, "", List.of(
-//                        new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/148/148026950.jpg"),
-//                        new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/205/205765626.jpg"),
-//                        new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/205/205765781.jpg")
+                        new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/148/148026950.jpg"),
+                        new ImageUrl("https://r-cf.bstatic.com/images/hotel/max1280x900/205/205765626.jpg"),
+                        new ImageUrl("https://q-cf.bstatic.com/images/hotel/max1280x900/205/205765781.jpg")
                 ))
         ));
     }
