@@ -8,6 +8,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
+    <style>
+    .addScroll{
+    overflow-y:auto;
+    height: 190px;
+}
+
+    </style>
 </head>
 <body>
 <div class="container">
@@ -15,7 +22,7 @@
         <a class="navbar-brand" href="/welcome/">Dream Vacations</a>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/vacations/">Locations</a>
+                <a class="nav-link" href="/vacations/">All Locations</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/bookings/">My Bookings</a>
@@ -35,7 +42,11 @@
                         <p>Rating: <span data-th-text="${selectedVacation.rating}"></span></p>
                         <p>Duration: <span data-th-text="${selectedVacation.duration}"></span></p>
                         <p>Price: <span data-th-text="${selectedVacation.price}"></span></p>
-                        <p>Description:<br> <span data-th-text="${selectedVacation.description}"></span></p>
+                        <p>Description:<br></p>
+                        <div class="addScroll">
+                            <span data-th-text="${selectedVacation.description}"
+                                  style="height: 200px; overflow-y: scroll;"></span>
+                        </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="carousel slide" data-ride="carousel" id="vacationSlider">

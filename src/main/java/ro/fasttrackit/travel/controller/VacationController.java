@@ -5,7 +5,7 @@ import ro.fasttrackit.travel.domain.Vacation;
 import ro.fasttrackit.travel.service.VacationService;
 
 @RestController
-@RequestMapping("vacations")
+@RequestMapping("/api/vacations")
 public class VacationController {
     private final VacationService vacationService;
 
@@ -15,8 +15,8 @@ public class VacationController {
 
     //add a vacation
     @PostMapping
-    public Vacation addVacation(@RequestBody Vacation vacation) {
-        return vacationService.addVacation(vacation);
+    public Vacation addVacation(@RequestBody Vacation newVacation) {
+        return vacationService.addVacation(newVacation);
     }
 
     //delete a vacation
@@ -29,5 +29,11 @@ public class VacationController {
     @PutMapping("{vacationId}")
     public Vacation updateVacation(@PathVariable int vacationId, @RequestBody Vacation vacation) {
         return vacationService.updateVacation(vacationId, vacation);
+    }
+
+    //get vacation by id
+    @GetMapping("{vacationId}")
+    public Vacation getVacationById(@PathVariable int vacationId) {
+        return vacationService.getVacationById(vacationId);
     }
 }

@@ -2,6 +2,7 @@ package ro.fasttrackit.travel.service;
 
 import org.springframework.stereotype.Service;
 import ro.fasttrackit.travel.domain.Vacation;
+import ro.fasttrackit.travel.domain.VacationCategory;
 import ro.fasttrackit.travel.exception.ResourceNotFoundException;
 import ro.fasttrackit.travel.persistence.VacationRepository;
 
@@ -48,5 +49,9 @@ public class VacationService {
     private Vacation getOrThrow(int vacationId) {
         return vacationRepository.findById(vacationId)
                 .orElseThrow(() -> new ResourceNotFoundException("Could not find vacation with id " + vacationId));
+    }
+
+    public List<Vacation> getVacationsForCategory(VacationCategory vacationCategory) {
+        return vacationRepository.findByVacationCategory(vacationCategory);
     }
 }

@@ -12,6 +12,9 @@ public class Vacation {
     @Id
     @GeneratedValue
     private Integer vacationId;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category")
+    private VacationCategory vacationCategory;
     private String name;
     private int stars;
     private String location;
@@ -26,11 +29,12 @@ public class Vacation {
     public Vacation() {
     }
 
-    public Vacation(String name, int stars, String location, double rating, int price, int duration, String description) {
-        this(name, stars, location, rating, price, duration, description, List.of());
+    public Vacation(VacationCategory vacationCategory, String name, int stars, String location, double rating, int price, int duration, String description) {
+        this(vacationCategory, name, stars, location, rating, price, duration, description, List.of());
     }
 
-    public Vacation(String name, int stars, String location, double rating, int price, int duration, String description, List<ImageUrl> imagesUrl) {
+    public Vacation(VacationCategory vacationCategory, String name, int stars, String location, double rating, int price, int duration, String description, List<ImageUrl> imagesUrl) {
+        this.vacationCategory = vacationCategory;
         this.name = name;
         this.stars = stars;
         this.location = location;
@@ -47,6 +51,14 @@ public class Vacation {
 
     public void setVacationId(Integer vacationId) {
         this.vacationId = vacationId;
+    }
+
+    public VacationCategory getVacationCategory() {
+        return vacationCategory;
+    }
+
+    public void setVacationCategory(VacationCategory vacationCategory) {
+        this.vacationCategory = vacationCategory;
     }
 
     public String getName() {
@@ -121,6 +133,7 @@ public class Vacation {
         this.imageUrl = imageUrl;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -131,6 +144,7 @@ public class Vacation {
                 price == vacation.price &&
                 duration == vacation.duration &&
                 Objects.equals(vacationId, vacation.vacationId) &&
+                vacationCategory == vacation.vacationCategory &&
                 Objects.equals(name, vacation.name) &&
                 Objects.equals(location, vacation.location) &&
                 Objects.equals(description, vacation.description) &&
@@ -139,13 +153,14 @@ public class Vacation {
 
     @Override
     public int hashCode() {
-        return Objects.hash(vacationId, name, stars, location, rating, price, duration, description, imageUrl);
+        return Objects.hash(vacationId, vacationCategory, name, stars, location, rating, price, duration, description, imageUrl);
     }
 
     @Override
     public String toString() {
         return "Vacation{" +
                 "vacationId=" + vacationId +
+                ", vacationCategory=" + vacationCategory +
                 ", name='" + name + '\'' +
                 ", stars=" + stars +
                 ", location='" + location + '\'' +
