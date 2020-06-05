@@ -52,6 +52,6 @@ public class VacationService {
     }
 
     public List<Vacation> getVacationsForCategory(VacationCategory vacationCategory) {
-        return vacationRepository.findByVacationCategory(vacationCategory);
+        return vacationRepository.findByCategory(vacationCategory);
     }
 }

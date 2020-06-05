@@ -10,6 +10,10 @@ import ro.fasttrackit.travel.domain.VacationCategory;
 import ro.fasttrackit.travel.service.ImageUrlService;
 import ro.fasttrackit.travel.service.VacationService;
 
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
+
 @Controller
 public class VacationUIController {
     private final VacationService vacationService;
@@ -34,17 +38,18 @@ public class VacationUIController {
 
     //get all vacations
     @GetMapping("vacations")
-    public String vacationsPage(Model pageModel) {
-        pageModel.addAttribute("vacations", vacationService.getAll());
+    public String vacationsPage(@RequestParam(name = "category", required = false) VacationCategory vacationCategory, Model pageModel) {
+        if (vacationCategory != null) {
+            pageModel.addAttribute("vacations", vacationService.getVacationsForCategory(vacationCategory));
+        } else {
+            pageModel.addAttribute("vacations", vacationService.getAll());
+        }
+        pageModel.addAttribute("categories", Stream.of(VacationCategory.values())
+                .map(v -> v.name().toLowerCase())
+                .collect(toList()));
         return "vacations";
     }
 
-    //get all vacations
-    @GetMapping(value = "vacations", params = "category")
-    public String vacationsPage(@RequestParam(name = "category", required = true) VacationCategory vacationCategory, Model pageModel) {
-        pageModel.addAttribute("vacations", vacationService.getVacationsForCategory(vacationCategory));
-        return "vacations";
-    }
 
     //Details Page
     //get vacation by id

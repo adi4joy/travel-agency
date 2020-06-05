@@ -13,8 +13,7 @@ public class Vacation {
     @GeneratedValue
     private Integer vacationId;
     @Enumerated(EnumType.STRING)
-    @Column(name = "category")
-    private VacationCategory vacationCategory;
+    private VacationCategory category;
     private String name;
     private int stars;
     private String location;
@@ -29,12 +28,12 @@ public class Vacation {
     public Vacation() {
     }
 
-    public Vacation(VacationCategory vacationCategory, String name, int stars, String location, double rating, int price, int duration, String description) {
-        this(vacationCategory, name, stars, location, rating, price, duration, description, List.of());
+    public Vacation(VacationCategory category, String name, int stars, String location, double rating, int price, int duration, String description) {
+        this(category, name, stars, location, rating, price, duration, description, List.of());
     }
 
-    public Vacation(VacationCategory vacationCategory, String name, int stars, String location, double rating, int price, int duration, String description, List<ImageUrl> imagesUrl) {
-        this.vacationCategory = vacationCategory;
+    public Vacation(VacationCategory category, String name, int stars, String location, double rating, int price, int duration, String description, List<ImageUrl> imagesUrl) {
+        this.category = category;
         this.name = name;
         this.stars = stars;
         this.location = location;
@@ -53,12 +52,12 @@ public class Vacation {
         this.vacationId = vacationId;
     }
 
-    public VacationCategory getVacationCategory() {
-        return vacationCategory;
+    public VacationCategory getCategory() {
+        return category;
     }
 
-    public void setVacationCategory(VacationCategory vacationCategory) {
-        this.vacationCategory = vacationCategory;
+    public void setCategory(VacationCategory category) {
+        this.category = category;
     }
 
     public String getName() {
@@ -144,7 +143,7 @@ public class Vacation {
                 price == vacation.price &&
                 duration == vacation.duration &&
                 Objects.equals(vacationId, vacation.vacationId) &&
-                vacationCategory == vacation.vacationCategory &&
+                category == vacation.category &&
                 Objects.equals(name, vacation.name) &&
                 Objects.equals(location, vacation.location) &&
                 Objects.equals(description, vacation.description) &&
@@ -153,14 +152,14 @@ public class Vacation {
 
     @Override
     public int hashCode() {
-        return Objects.hash(vacationId, vacationCategory, name, stars, location, rating, price, duration, description, imageUrl);
+        return Objects.hash(vacationId, category, name, stars, location, rating, price, duration, description, imageUrl);
     }
 
     @Override
     public String toString() {
         return "Vacation{" +
                 "vacationId=" + vacationId +
-                ", vacationCategory=" + vacationCategory +
+                ", vacationCategory=" + category +
                 ", name='" + name + '\'' +
                 ", stars=" + stars +
                 ", location='" + location + '\'' +

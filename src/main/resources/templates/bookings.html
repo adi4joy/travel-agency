@@ -2,18 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>My Bookings</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vacations.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
+    <!--    <script src="/bookings.js">-->
 </head>
 <body>
 <div class="container">
+
     <nav class="navbar navbar-expand-sm bg-info navbar-dark">
-        <a class="navbar-brand" href="/welcome/">Dream Vacations</a>
+        <!--        <a class="navbar-brand" href="/welcome/">Dream Vacations</a>-->
         <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/welcome/">Dream Vacations</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/vacations/">All Locations</a>
             </li>
@@ -24,8 +32,34 @@
     </nav>
 
     <div class="container-fluid"><br>
-        BOOK NOW-MODAL: NUME, DATA DE LA, PANA LA<br>
-        TABEL
+        <table class="table table-hover mt-3">
+            <thead>
+            <tr>
+                <th>Hotel</th>
+                <th>Stars</th>
+                <th>Location</th>
+                <th>Rating</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="vacationTable">
+            <tr data-th-each="vacation : ${vacations}">
+                <td>
+                    <a class="nav-link text-dark" data-th-href="'/vacations/' + ${vacation.vacationId}"
+                       data-th-text="${vacation.name}"></a>
+                </td>
+                <td data-th-text="${vacation.stars}"></td>
+                <td data-th-text="${vacation.location}"></td>
+                <td data-th-text="${vacation.rating}"></td>
+                <td>
+                    <div data-th-id="${vacation.vacationId}" style="cursor: pointer">
+                        <i class="fas fa-edit mr-2" data-target="#addVacationModal" data-toggle="modal"></i>
+                        <i class="fas fa-trash-alt ml-2"></i>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>

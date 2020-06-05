@@ -1,4 +1,7 @@
 $(document).ready(() => {
+      $('li.active').removeClass('active');
+      $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+
     let editVacationId = null;
     $("#search").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -12,6 +15,7 @@ $(document).ready(() => {
         const stars = $('#modal-vacation-stars').val();
         const location = $('#modal-vacation-location').val();
         const rating = $('#modal-vacation-rating').val();
+        const category = $('#modal-vacation-category').val();
         const price = $('#modal-vacation-price').val();
         const duration = $('#modal-vacation-duration').val();
         const description = $('#modal-vacation-description').val();
@@ -34,6 +38,7 @@ $(document).ready(() => {
             stars: stars,
             location: location,
             rating: rating,
+            category: category.toUpperCase(),
             price: price,
             duration: duration,
             description: description,
@@ -63,6 +68,8 @@ $(document).ready(() => {
             $('#modal-vacation-stars').val(vacation.stars);
             $('#modal-vacation-location').val(vacation.location);
             $('#modal-vacation-rating').val(vacation.rating);
+//            $('#modal-vacation-category option[value="+'vacation.category'+"]').attr("selected", "selected");
+            $('#modal-vacation-category').val(vacation.category.toLowerCase()).change();
             $('#modal-vacation-price').val(vacation.price);
             $('#modal-vacation-duration').val(vacation.duration);
             $('#modal-vacation-description').val(vacation.description);
@@ -72,20 +79,6 @@ $(document).ready(() => {
         })
 
     });
-
-//pune event pe butonul de add si apeleaza reset
-    function resetModal(){
-            $('#modal-vacation-name').val('');
-            $('#modal-vacation-stars').val('');
-            $('#modal-vacation-location').val('');
-            $('#modal-vacation-rating').val('');
-            $('#modal-vacation-price').val('');
-            $('#modal-vacation-duration').val('');
-            $('#modal-vacation-description').val('');
-            $('#modal-vacation-url1').val('');
-            $('#modal-vacation-url2').val('');
-            $('#modal-vacation-url3').val('');
-    }
 
     function addNewVacation(body) {
         fetch('/api/vacations/', {
@@ -112,5 +105,22 @@ $(document).ready(() => {
         });
     }
 
+    function resetModal(){
+        editVacationId = null;
+        $('#modal-vacation-name').val('');
+        $('#modal-vacation-stars').val('');
+        $('#modal-vacation-location').val('');
+        $('#modal-vacation-rating').val('');
+        $('#modal-vacation-category').val('');
+        $('#modal-vacation-price').val('');
+        $('#modal-vacation-duration').val('');
+        $('#modal-vacation-description').val('');
+        $('#modal-vacation-url1').val('');
+        $('#modal-vacation-url2').val('');
+        $('#modal-vacation-url3').val('');
+    }
 
+    $('#addButton').click(function () {
+        resetModal();
+    })
 })
