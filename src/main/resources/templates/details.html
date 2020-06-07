@@ -25,7 +25,6 @@
 <div class="container">
 
     <nav class="navbar navbar-expand-sm bg-info navbar-dark">
-        <!--        <a class="navbar-brand" href="/welcome/">Dream Vacations</a>-->
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href="/welcome/">Dream Vacations</a>
@@ -42,7 +41,6 @@
     <div class="container" data-th-if="${showDetails}"><br>
         <h3 class="mb-3" data-th-text="${selectedVacation.name}"></h3>
         <div class="card">
-            <!--            <div class="card-header bg-info text-light" data-th-text="${selectedVacation.name}"></div>-->
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4">
@@ -74,7 +72,6 @@
                                          data-th-src="${imageUrl.url}">
                                 </div>
                             </div>
-
                             <!-- Left and right controls -->
                             <a class="carousel-control-prev" data-slide="prev" href="#vacationSlider">
                                 <span class="carousel-control-prev-icon"></span>
@@ -82,7 +79,6 @@
                             <a class="carousel-control-next" data-slide="next" href="#vacationSlider">
                                 <span class="carousel-control-next-icon"></span>
                             </a>
-
                         </div>
                     </div>
                 </div>
