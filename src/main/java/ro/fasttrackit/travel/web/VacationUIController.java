@@ -5,8 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import ro.fasttrackit.travel.domain.Booking;
 import ro.fasttrackit.travel.domain.Vacation;
 import ro.fasttrackit.travel.domain.VacationCategory;
+import ro.fasttrackit.travel.service.BookingService;
 import ro.fasttrackit.travel.service.ImageUrlService;
 import ro.fasttrackit.travel.service.VacationService;
 
@@ -18,25 +20,31 @@ import static java.util.stream.Collectors.toList;
 public class VacationUIController {
     private final VacationService vacationService;
     private final ImageUrlService imageUrlService;
+    private final BookingService bookingService;
 
-    public VacationUIController(VacationService vacationService, ImageUrlService imageUrlService) {
+    public VacationUIController(VacationService vacationService, ImageUrlService imageUrlService, BookingService bookingService) {
         this.vacationService = vacationService;
         this.imageUrlService = imageUrlService;
+        this.bookingService = bookingService;
     }
 
-    //Welcome Page
     @GetMapping("welcome")
     public String welcomePage(Model pageModel) {
         return "welcome";
     }
 
-    //My Bookings Page
     @GetMapping("bookings")
     public String bookingsPage(Model pageModel) {
         return "bookings";
     }
 
-    //get all vacations
+    @GetMapping("bookings/{bookingsId}")
+    public String bookingsPageById(@PathVariable Integer bookingId, Model pageModel) {
+        Booking bookingById = bookingService.getBookingById(bookingId);
+        pageModel.addAttribute("booking", bookingById);
+        return "bookings";
+    }
+
     @GetMapping("vacations")
     public String vacationsPage(@RequestParam(name = "category", required = false) VacationCategory vacationCategory, Model pageModel) {
         if (vacationCategory != null) {
@@ -50,9 +58,6 @@ public class VacationUIController {
         return "vacations";
     }
 
-
-    //Details Page
-    //get vacation by id
     @GetMapping("vacations/{vacationId}")
     public String vacationsPageWithDetails(@PathVariable Integer vacationId, Model pageModel) {
         pageModel.addAttribute("showDetails", true);

@@ -11,12 +11,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
-    <!--    <script src="/vacations.js">-->
+    <script src="/details.js"></script>
     <style>
     .addScroll{
     overflow-y:auto;
     height: 190px;
 }
+
 
     </style>
 </head>
@@ -86,7 +87,9 @@
                     </div>
                 </div>
                 <div class="card-footer clearfix">
-                    <button class="btn btn-info float-left">Book Now</button>
+                    <button class="btn btn-info float-left" data-target="#bookVacationModal" data-toggle="modal"
+                            id="bookVacation">Book This Vacation
+                    </button>
                     <a href="/vacations/">
                         <button class="btn btn-danger float-right">Close</button>
                     </a>
@@ -94,5 +97,59 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="bookVacationModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Booking Details</h4>
+                    <button class="close" data-dismiss="modal" type="button">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="modal-tourist-name">Customer Name</label>
+                        <input class="form-control" id="modal-tourist-name" type="text"/>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="form-group flex-fill mr-3">
+                            <label for="modal-vacation-name">Hotel</label>
+                            <input class="form-control" id="modal-vacation-name" type="text"/>
+                        </div>
+                        <div class="form-group flex-fill ml-3">
+                            <label for="modal-vacation-stars">Stars</label>
+                            <input class="form-control" id="modal-vacation-stars" max="5" min="1" type="number"/>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="form-group flex-fill mr-3">
+                            <label for="modal-vacation-location">Location</label>
+                            <input class="form-control" id="modal-vacation-location" type="text"/>
+                        </div>
+                        <div class="form-group flex-fill ml-3">
+                            <label for="modal-vacation-rating">Rating</label>
+                            <input class="form-control" id="modal-vacation-rating" max="10" min="1" type="number">
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="form-group flex-fill mr-3">
+                            <label for="modal-vacation-price">Price</label>
+                            <input class="form-control" id="modal-vacation-price" max="100000" min="1" type="number"/>
+                        </div>
+                        <div class="form-group flex-fill ml-3">
+                            <label for="modal-vacation-duration">Duration</label>
+                            <input class="form-control" id="modal-vacation-duration" max="8" min="1" type="number"/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="cursor: pointer">
+                    <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
+                    <button class="btn btn-primary" id="bookButton" type="button">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

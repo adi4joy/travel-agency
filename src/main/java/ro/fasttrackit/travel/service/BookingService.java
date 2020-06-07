@@ -1,11 +1,13 @@
 package ro.fasttrackit.travel.service;
 
+import org.springframework.stereotype.Service;
 import ro.fasttrackit.travel.domain.Booking;
 import ro.fasttrackit.travel.exception.ResourceNotFoundException;
 import ro.fasttrackit.travel.persistence.BookingRepository;
 
 import java.util.List;
 
+@Service
 public class BookingService {
     private final BookingRepository bookingRepository;
 
@@ -30,18 +32,6 @@ public class BookingService {
         bookingRepository.deleteById(bookingId);
         return bookingToDelete;
     }
-
-//    public Booking updateBooking(int bookingId, Booking booking) {
-//        Booking dbBooking = getOrThrow(bookingId);
-//        dbBooking.setName(booking.getName());
-//        dbBooking.setStars(booking.getStars());
-//        dbBooking.setLocation(booking.getLocation());
-//        dbBooking.setRating(booking.getRating());
-//        dbBooking.setPrice(booking.getPrice());
-//        dbBooking.setDuration(booking.getDuration());
-//        dbBooking.setDescription(booking.getDescription());
-//        return bookingRepository.save(dbBooking);
-//    }
 
     private Booking getOrThrow(int bookingId) {
         return bookingRepository.findById(bookingId)

@@ -20,7 +20,7 @@ public class BookingController {
         return bookingService.getAllBookings();
     }
 
-    @PostMapping
+    @PostMapping("/api/vacations/{id}/bookings")
     public Booking addBooking(@RequestBody Booking newBooking) {
         return bookingService.addBooking(newBooking);
     }
@@ -29,11 +29,6 @@ public class BookingController {
     public Booking deleteBooking(@PathVariable int bookingId) {
         return bookingService.deleteBooking(bookingId);
     }
-
-//    @PutMapping("{bookingId}")
-//    public Booking updateBooking(@PathVariable int bookingId, @RequestBody Booking booking) {
-//        return bookingService.updateBooking(bookingId, booking);
-//    }
 
     @GetMapping("{bookingId}")
     public Booking getBookingById(@PathVariable int bookingId) {
