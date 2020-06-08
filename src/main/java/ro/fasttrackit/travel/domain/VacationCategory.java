@@ -1,7 +1,7 @@
 package ro.fasttrackit.travel.domain;
 
 public enum VacationCategory {
-    ROMANIAN,
+    SPECIAL,
     EXOTIC,
     CITY,
     SEASIDE,
