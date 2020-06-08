@@ -2,6 +2,7 @@ package ro.fasttrackit.travel.service;
 
 import org.springframework.stereotype.Service;
 import ro.fasttrackit.travel.domain.Booking;
+import ro.fasttrackit.travel.domain.Vacation;
 import ro.fasttrackit.travel.exception.ResourceNotFoundException;
 import ro.fasttrackit.travel.persistence.BookingRepository;
 
@@ -10,9 +11,11 @@ import java.util.List;
 @Service
 public class BookingService {
     private final BookingRepository bookingRepository;
+    private final VacationService vacationService;
 
-    public BookingService(BookingRepository bookingRepository) {
+    public BookingService(BookingRepository bookingRepository, VacationService vacationService) {
         this.bookingRepository = bookingRepository;
+        this.vacationService = vacationService;
     }
 
     public List<Booking> getAllBookings() {
@@ -23,7 +26,9 @@ public class BookingService {
         return getOrThrow(bookingId);
     }
 
-    public Booking addBooking(Booking booking) {
+    public Booking addBooking(Integer id, Booking booking) {
+        Vacation vacation = vacationService.getVacationById(id);
+        booking.setVacation(vacation);
         return bookingRepository.save(booking);
     }
 

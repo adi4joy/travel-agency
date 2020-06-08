@@ -5,46 +5,37 @@ $(document).ready(function() {
       let editBookingId = null;
 
     $('#bookButton').click(() => {
-        const name = $('#modal-vacation-name').val();
-        const stars = $('#modal-vacation-stars').val();
-        const location = $('#modal-vacation-location').val();
-        const rating = $('#modal-vacation-rating').val();
-        const category = $('#modal-vacation-category').val();
-        const price = $('#modal-vacation-price').val();
-        const duration = $('#modal-vacation-duration').val();
-
+        const touristName = $('#modal-touristName').val();
+        const startDate = $('#modal-vacation-startDate').val();
 
         const body = {
-            name: name,
-            stars: stars,
-            location: location,
-            rating: rating,
-            category: category.toUpperCase(),
-            price: price,
-            duration: duration,
+            touristName: touristName,
+            startDate: startDate
             }
-        console.log(JSON.stringify(body));
-        if (editBookingId === null) {
-            addNewBooking(body);
-        } else {
-            editBooking(editBookingId, body);
-        }
-    });
+            console.log(JSON.stringify(body))
+            const vacationId = window.location.pathname.split("/")[2];
+        fetch('/api/vacations/' + vacationId + '/bookings', {
+            method: 'post',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
 
     $('#bookVacation').click(function () {
         editBookingId = this.parentElement.id;
         fetch('/api/bookings/' + editBookingId)
         .then(response => response.json())
         .then(vacation => {
-            $('#modal-vacation-name').val(vacation.name);
-            $('#modal-vacation-stars').val(vacation.stars);
-            $('#modal-vacation-location').val(vacation.location);
-            $('#modal-vacation-rating').val(vacation.rating);
-            $('#modal-vacation-category').val(vacation.category.toLowerCase()).change();
-            $('#modal-vacation-price').val(vacation.price);
-            $('#modal-vacation-duration').val(vacation.duration);
-        })
+            const touristName = $('#modal-tourist-name').val();
+            const startDate = $('#modal-vacation-startDate').val();
+            const name = $('#modal-vacation-name').val();
+            const stars = $('#modal-vacation-stars').val();
+            const location = $('#modal-vacation-location').val();
+            const price = $('#modal-vacation-price').val();
+            const duration = $('#modal-vacation-duration').val();
+        });
 
     });
-
+});
 })

@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import ro.fasttrackit.travel.domain.Booking;
 import ro.fasttrackit.travel.domain.Vacation;
 import ro.fasttrackit.travel.domain.VacationCategory;
 import ro.fasttrackit.travel.service.BookingService;
@@ -35,13 +34,8 @@ public class VacationUIController {
 
     @GetMapping("bookings")
     public String bookingsPage(Model pageModel) {
-        return "bookings";
-    }
-
-    @GetMapping("bookings/{bookingsId}")
-    public String bookingsPageById(@PathVariable Integer bookingId, Model pageModel) {
-        Booking bookingById = bookingService.getBookingById(bookingId);
-        pageModel.addAttribute("booking", bookingById);
+        pageModel.addAttribute("bookings", bookingService.getAllBookings());
+        System.out.println(bookingService.getAllBookings());
         return "bookings";
     }
 

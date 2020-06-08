@@ -7,7 +7,6 @@ import ro.fasttrackit.travel.service.BookingService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/bookings")
 public class BookingController {
     private final BookingService bookingService;
 
@@ -15,22 +14,22 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    @GetMapping
+    @GetMapping("/api/bookings")
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
     }
 
     @PostMapping("/api/vacations/{id}/bookings")
-    public Booking addBooking(@RequestBody Booking newBooking) {
-        return bookingService.addBooking(newBooking);
+    public Booking addBooking(@PathVariable Integer id, @RequestBody Booking newBooking) {
+        return bookingService.addBooking(id, newBooking);
     }
 
-    @DeleteMapping("{bookingId}")
+    @DeleteMapping("/api/bookings/{bookingId}")
     public Booking deleteBooking(@PathVariable int bookingId) {
         return bookingService.deleteBooking(bookingId);
     }
 
-    @GetMapping("{bookingId}")
+    @GetMapping("/api/bookings/{bookingId}")
     public Booking getBookingById(@PathVariable int bookingId) {
         return bookingService.getBookingById(bookingId);
     }
