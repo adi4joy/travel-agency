@@ -1,9 +1,8 @@
 package ro.fasttrackit.travel.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -13,8 +12,9 @@ public class Booking {
     @GeneratedValue
     private Integer bookingId;
     private String touristName;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Vacation vacation;
 
     public Booking() {

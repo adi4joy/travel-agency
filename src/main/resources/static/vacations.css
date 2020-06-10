@@ -1,9 +1,14 @@
 header {
-    font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
     }
 
+h1 {
+font-family: 'Dancing Script', cursive !important;
+font-size: 3.5rem;
+}
+
 body {
-font-family: "Lato", sans-serif;
+font-family: 'Lato', sans-serif;
 }
 
 .btn {
