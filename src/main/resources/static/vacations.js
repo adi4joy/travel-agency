@@ -44,7 +44,7 @@ $(document).ready(() => {
             description: description,
             imageUrl: imageUrls
             }
-        console.log(JSON.stringify(body));
+//        console.log(JSON.stringify(body));
         if (editVacationId === null) {
             addNewVacation(body);
         } else {
@@ -68,7 +68,6 @@ $(document).ready(() => {
             $('#modal-vacation-stars').val(vacation.stars);
             $('#modal-vacation-location').val(vacation.location);
             $('#modal-vacation-rating').val(vacation.rating);
-//            $('#modal-vacation-category option[value="+'vacation.category'+"]').attr("selected", "selected");
             $('#modal-vacation-category').val(vacation.category.toLowerCase()).change();
             $('#modal-vacation-price').val(vacation.price);
             $('#modal-vacation-duration').val(vacation.duration);

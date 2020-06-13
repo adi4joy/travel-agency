@@ -1,5 +1,7 @@
 package ro.fasttrackit.travel.domain;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,10 +13,12 @@ public class Booking {
     @Id
     @GeneratedValue
     private Integer bookingId;
+    @Column(nullable = false)
     private String touristName;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MMM-yyyy")
     private LocalDate startDate;
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Vacation vacation;
 
     public Booking() {

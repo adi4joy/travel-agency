@@ -21,7 +21,11 @@ public class BookingController {
 
     @PostMapping("/api/vacations/{id}/bookings")
     public Booking addBooking(@PathVariable Integer id, @RequestBody Booking newBooking) {
-        return bookingService.addBooking(id, newBooking);
+        if (!newBooking.getTouristName().isEmpty()) {
+            return bookingService.addBooking(id, newBooking);
+        } else {
+            return null;
+        }
     }
 
     @DeleteMapping("/api/bookings/{bookingId}")

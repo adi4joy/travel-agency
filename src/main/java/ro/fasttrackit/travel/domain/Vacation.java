@@ -76,14 +76,6 @@ public class Vacation {
         this.stars = stars;
     }
 
-    public void showStars(int stars) {
-        this.stars = stars;
-        if (stars > 0) {
-            System.out.print("*" + " ");
-            showStars(stars - 1);
-        }
-    }
-
     public String getLocation() {
         return location;
     }

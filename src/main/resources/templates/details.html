@@ -17,6 +17,8 @@
     overflow-y:auto;
     height: 190px;
 }
+
+
     </style>
 </head>
 <body>
@@ -94,59 +96,72 @@
 
     <div class="modal fade" id="bookVacationModal">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Booking Details</h4>
-                    <button class="close" data-dismiss="modal" type="button">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="form-group flex-fill mr-3">
-                            <label for="modal-touristName">Tourist Name</label>
-                            <input class="form-control" id="modal-touristName" type="text"/>
+            <form class="was-validated">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Booking Details</h4>
+                        <button class="close" data-dismiss="modal" type="button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="form-group flex-fill mr-3">
+                                <label for="modal-touristName">Tourist Name</label>
+                                <input class="form-control" id="modal-touristName" name="modal-touristName"
+                                       placeholder="Enter tourist name" required type="text"/>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group flex-fill mr-3">
+                                <label for="modal-vacation-startDate">Check-In Date</label>
+                                <input class="form-control" id="modal-vacation-startDate"
+                                       name="modal-vacation-startDate" required type="date"/>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
                         </div>
-                        <div class="form-group flex-fill mr-3">
-                            <label for="modal-vacation-startDate">Check-In Date</label>
-                            <input class="form-control" id="modal-vacation-startDate" required type="date"/>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <div class="form-group flex-fill mr-3 my-auto">
+                                <label><img class="img-fluid" data-th-src="${selectedVacation.imageUrl[0].url}"
+                                            id="vacationPreview"></label>
+                            </div>
+                            <div class="form-group flex-fill mr-3 ml-3 my-auto">
+                                <label for="modal-vacation-name">Hotel: <span
+                                        data-th-text="${selectedVacation.name}"
+                                        id="modal-vacation-name" style="text-align:center"></span></label>
+                            </div>
+                            <div class="form-group flex-fill ml-3 my-auto">
+                                <label for="modal-vacation-stars">Stars: <span class="fas fa-star"
+                                                                               data-th-each="i : ${#numbers.sequence(1, selectedVacation.stars)}"
+                                                                               id="modal-vacation-stars"></span></label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <div class="form-group flex-fill mr-3 my-auto">
+                                <label for="modal-vacation-location">Location: <span
+                                        data-th-text="${selectedVacation.location}"
+                                        id="modal-vacation-location" style="text-align:center"></span></label>
+                            </div>
+                            <div class="form-group flex-fill mr-3 ml-3 my-auto">
+                                <label for="modal-vacation-price">Price: <span
+                                        data-th-text="${selectedVacation.price} + ' RON'"
+                                        id="modal-vacation-price" style="text-align:center"></span></label>
+                            </div>
+                            <div class="form-group flex-fill ml-3 my-auto">
+                                <label for="modal-vacation-duration">Duration: <span
+                                        data-th-text="${selectedVacation.duration} + ' days'"
+                                        id="modal-vacation-duration" style="text-align:center"></span></label>
+                            </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <div class="form-group flex-fill mr-3">
-                            <label for="modal-vacation-name">Hotel: <span
-                                    data-th-text="${selectedVacation.name}"
-                                    id="modal-vacation-name" style="text-align:center"></span></label>
-                        </div>
-                        <div class="form-group flex-fill ml-3">
-                            <label for="modal-vacation-stars">Stars: <span class="fas fa-star"
-                                                                           data-th-each="i : ${#numbers.sequence(1, selectedVacation.stars)}"
-                                                                           id="modal-vacation-stars"></span></label>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <div class="form-group flex-fill mr-3">
-                            <label for="modal-vacation-location">Location: <span
-                                    data-th-text="${selectedVacation.location}"
-                                    id="modal-vacation-location" style="text-align:center"></span></label>
-                        </div>
-                        <div class="form-group flex-fill mr-3 ml-3">
-                            <label for="modal-vacation-price">Price: <span
-                                    data-th-text="${selectedVacation.price} + ' RON'"
-                                    id="modal-vacation-price" style="text-align:center"></span></label>
-                        </div>
-                        <div class="form-group flex-fill ml-3">
-                            <label for="modal-vacation-duration">Duration: <span
-                                    data-th-text="${selectedVacation.duration} + ' days'"
-                                    id="modal-vacation-duration" style="text-align:center"></span></label>
-                        </div>
+                    <div class="modal-footer" style="cursor: pointer">
+                        <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
+                        <button class="btn btn-primary" data-dismiss="modal" id="bookButton" type="button">Book Now
+                        </button>
                     </div>
                 </div>
-                <div class="modal-footer" style="cursor: pointer">
-                    <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
-                    <button class="btn btn-primary" data-dismiss="modal" id="bookButton" type="button">Book Now</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="toast" data-autohide="false" style="text-align:center">
