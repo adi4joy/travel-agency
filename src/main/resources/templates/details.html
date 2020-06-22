@@ -108,14 +108,14 @@
                                 <label for="modal-touristName">Tourist Name</label>
                                 <input class="form-control" id="modal-touristName" name="modal-touristName"
                                        placeholder="Enter tourist name" required type="text"/>
-                                <div class="valid-feedback">Valid.</div>
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <div class="valid-feedback" id="touristNameValid">Valid.</div>
+                                <div class="invalid-feedback" id="touristNameInvalid">Please fill out this field.</div>
                             </div>
                             <div class="form-group flex-fill mr-3">
                                 <label for="modal-vacation-startDate">Check-In Date</label>
                                 <input class="form-control" id="modal-vacation-startDate"
                                        name="modal-vacation-startDate" required type="date"/>
-                                <div class="valid-feedback">Valid.</div>
+                                <div class="valid-feedback" id="startDateValid">Valid.</div>
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
                         </div>
@@ -157,14 +157,15 @@
                     </div>
                     <div class="modal-footer" style="cursor: pointer">
                         <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
-                        <button class="btn btn-primary" data-dismiss="modal" id="bookButton" type="button">Book Now
+                        <button class="btn btn-primary" data-dismiss="modal" disabled id="bookButton" type="button">Book
+                            Now
                         </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="toast" data-autohide="false" style="text-align:center">
+    <div class="toast" data-autohide="false" id="successfulToast" style="text-align:center">
         <div class="toast-header">
             <strong class="mr-auto text-info">Your reservation was successful!</strong>
             <button class="ml-2 mb-1 close" data-dismiss="toast" type="button">&times;</button>

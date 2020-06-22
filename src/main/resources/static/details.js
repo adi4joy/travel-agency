@@ -1,13 +1,25 @@
 $(document).ready(function() {
   $('li.active').removeClass('active');
   $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
-  $("#bookButton").click(function(){
-        $('.toast').toast('show');
-      });
+
+    function tryEnableBookButton(){
+    if($('#touristNameValid').is(':visible') && $('#startDateValid').is(':visible')) {
+        $('#bookButton').prop('disabled', false);
+    }
+    }
+
+  $('#modal-touristName').focusout(function() {
+      tryEnableBookButton();
+  })
+
+  $('#modal-vacation-startDate').focusout(function() {
+      tryEnableBookButton();
+  })
 
       let editBookingId = null;
 
     $('#bookButton').click(() => {
+        console.log($('#touristNameValid'))
         const touristName = $('#modal-touristName').val();
         const startDate = $('#modal-vacation-startDate').val();
 
@@ -15,30 +27,27 @@ $(document).ready(function() {
             touristName: touristName,
             startDate: startDate
             }
-            console.log(JSON.stringify(body))
-            const vacationId = window.location.pathname.split("/")[2];
+        const vacationId = window.location.pathname.split("/")[2];
         fetch('/api/vacations/' + vacationId + '/bookings', {
             method: 'post',
             body: JSON.stringify(body),
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
+        }).then(data=>{
+        $('#successfulToast').toast('show');
+                            setInterval(function(){ $('#successfulToast').toast('hide'); }, 3000);
+        })
 
     $('#bookVacation').click(function () {
+        resetForm();
         editBookingId = this.parentElement.id;
-        fetch('/api/bookings/' + editBookingId)
-        .then(response => response.json())
-        .then(vacation => {
-            const touristName = $('#modal-tourist-name').val();
-            const startDate = $('#modal-vacation-startDate').val();
-            const name = $('#modal-vacation-name').val();
-            const stars = $('#modal-vacation-stars').val();
-            const location = $('#modal-vacation-location').val();
-            const price = $('#modal-vacation-price').val();
-            const duration = $('#modal-vacation-duration').val();
-        });
-
     });
+
+    function resetForm() {
+    $('#bookButton').prop('disabled', true);
+    $('#modal-touristName').val('');
+    $('#modal-vacation-startDate').val('');
+    }
 });
 })
